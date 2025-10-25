@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "lint": "eslint cypress/**/*.js && eslint cypress.config.js",
+    "lint:fix": "eslint cypress/**/*.js --fix && eslint cypress.config.js --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.38.0",
+    "chance": "^1.1.13",
+    "cypress": "^15.5.0",
+    "cypress-fail-fast": "^7.1.1",
+    "cypress-xpath": "^2.0.1",
+    "globals": "^16.4.0"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "D": "^1.0.0",
+    "eslint": "^9.38.0",
+    "eslint-plugin-cypress": "^5.2.0"
+  }
+}
