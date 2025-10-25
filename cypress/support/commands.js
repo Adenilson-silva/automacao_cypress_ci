@@ -25,10 +25,11 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', (email, senha) => {
+  cy.session([email, senha], () => {
     cy.visit('/login');
-    cy.get('#header a[href="/login"]').click();
-      cy.get('[data-qa="login-email"]').type(email);
-      cy.get('[data-qa="login-password"]').type(senha);
-      cy.get('[data-qa="login-button"]').click();
-      cy.get('#header a[href="/logout"]').should('have.text', ' Logout');
+    cy.get('[data-qa="login-email"]').type(email);
+    cy.get('[data-qa="login-password"]').type(senha, { log: false });
+    cy.get('[data-qa="login-button"]').click();
+    cy.get('#header a[href="/logout"]').should('have.text', ' Logout');
+  })
 })
