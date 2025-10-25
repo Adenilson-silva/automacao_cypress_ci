@@ -19,7 +19,7 @@ describe('Conjunto de Teste', () => {
     })
   })
 
-  context.only('Teste com usuário logado', () => {
+  context('Teste com usuário logado', () => {
     it('Realizar Login', () => {
       cy.get('#header a[href="/login"]').click();
       cy.fixture('usuarios').then((data) => {
