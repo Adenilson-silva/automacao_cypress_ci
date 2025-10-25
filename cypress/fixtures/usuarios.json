@@ -1,0 +1,9 @@
+{
+    "usuarios": [
+        {
+            "nome": "Teste",
+            "email": "teste2@teste365.com",
+            "senha": "123456789"
+        }
+    ]
+}

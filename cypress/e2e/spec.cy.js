@@ -19,5 +19,19 @@ describe('Conjunto de Teste', () => {
     })
   })
 
+  context.only('Teste com usuário logado', () => {
+    it('Realizar Login', () => {
+      cy.get('#header a[href="/login"]').click();
+      cy.fixture('usuarios').then((data) => {
+        let usuario = data.usuarios[0]
+        cy.get('[data-qa="login-email"]').type(usuario.email);
+        cy.get('[data-qa="login-password"]').type(usuario.senha);
+        cy.get('[data-qa="login-button"]').click();
+        cy.get('#header a[href="/logout"]').should('have.text', ' Logout');
+        cy.get('#header li:nth-child(10) a').should('have.text', ' Logged in as ' + usuario.nome);
+      })
+    })
+  })
+
 })
 
