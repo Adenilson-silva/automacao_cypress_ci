@@ -33,3 +33,16 @@ Cypress.Commands.add('login', (email, senha) => {
     cy.get('#header a[href="/logout"]').should('have.text', ' Logout');
   })
 })
+
+Cypress.Commands.add('VerificarLoginApi', (email, senha) => {
+  cy.request({
+    method: 'POST',
+    url: Cypress.env('api_verificar_login'),
+    body: {
+      email: email,
+      password: senha
+    } 
+  }).then(response => {
+    expect(response.status).to.eq(200);
+  })
+})

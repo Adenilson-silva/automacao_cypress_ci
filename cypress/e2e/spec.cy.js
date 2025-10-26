@@ -3,11 +3,11 @@ var chance = new Chance()
 
 describe('Conjunto de Teste', () => {
   beforeEach(() => {
-    //cy.clearAllCookies();
-    //cy.clearAllSessionStorage();
-    //cy.clearAllLocalStorage()
+    cy.clearAllCookies();
+    cy.clearAllSessionStorage();
+    cy.clearAllLocalStorage();
     cy.visit('/');
-  })
+  });
 
   context('Cadastros de Usuários', () => {
     it('Registrar Usuário válido', () => {
@@ -41,15 +41,17 @@ describe('Conjunto de Teste', () => {
         let usuario = data.usuarios[0]
         cy.login(usuario.email, usuario.senha)
       })
-      cy.get('div:nth-child(3) div.overlay-content a.btn').click();
-      //cy.get('#cartModal h4.modal-title').should('have.text', 'Added!');
-      //cy.get('#cartModal i.material-icons').should('be.visible');
-      //cy.get('#cartModal p:nth-child(1)').should('have.text', 'Your product has been added to cart.');
-      //cy.get('#cartModal u').should('have.text', 'View Cart');
-      //cy.get('#cartModal button.close-modal').should('have.class', 'btn');
-      //cy.get('#cartModal button.close-modal').should('have.text', 'Continue Shopping');
-      //cy.get('#cartModal u').click();
-      //cy.get('#product-1 a[href="/product_details/1"]').should('be.visible');
+      cy.visit('/')
+      cy.get('a[href="/product_details/1"]').click();
+      cy.get('button.cart').click();
+      cy.get('#cartModal h4.modal-title').should('have.text', 'Added!');
+      cy.get('#cartModal i.material-icons').should('be.visible');
+      cy.get('#cartModal p:nth-child(1)').should('have.text', 'Your product has been added to cart.');
+      cy.get('#cartModal u').should('have.text', 'View Cart');
+      cy.get('#cartModal button.close-modal').should('have.class', 'btn');
+      cy.get('#cartModal button.close-modal').should('have.text', 'Continue Shopping');
+      cy.get('#cartModal u').click();
+      cy.get('#product-1 a[href="/product_details/1"]').should('be.visible');
     })
   })
 })
