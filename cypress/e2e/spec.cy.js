@@ -35,7 +35,7 @@ describe('Conjunto de Teste', () => {
       })
     })
 
-    it.only('Comprar', () => {
+    it('Comprar', () => {
       cy.get('#header a[href="/login"]').click();
       cy.fixture('usuarios').then((data) => {
         let usuario = data.usuarios[0]

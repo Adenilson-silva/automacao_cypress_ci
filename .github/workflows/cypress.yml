@@ -12,7 +12,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           spec:
-            cypress/e2e/spec.cy.js
+            cypress/e2e/spec.cy.js,
             cypress/e2e/login-api.cy.js
 
       - name: Upload Cypress videos
