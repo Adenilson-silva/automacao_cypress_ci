@@ -7,7 +7,7 @@ describe('Conjunto de Teste', () => {
   });
 
   context('Cadastros de Usuários', () => {
-    it.only('Registrar Usuário válido', () => {
+    it('Registrar Usuário válido', () => {
       let primeiroNome = chance.first();
       let ultimoNome = chance.last();
       let nome = primeiroNome + " " + ultimoNome
