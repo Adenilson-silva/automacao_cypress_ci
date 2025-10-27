@@ -21,8 +21,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          spec:
-            cypress/e2e/spec.cy.js,
+          spec: |
+            cypress/e2e/spec.cy.js
             cypress/e2e/login-api.cy.js
           parallel: true
           record: true
