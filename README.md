@@ -1,12 +1,14 @@
 Instalar o cypress -> npm install cypress -D
 
+Instalar o mochawesome -> npm install mochawesome --save-dev
+
 Instalar o chance -> npm install chance -D
 
 Instalar o xpath -> npm install -D cypress-xpath
 
 Instalar o fail-fast -> npm install cypress-fail-fast -D
 
-npm install mochawesome --save-dev
+
 
 
 Instalar o ESLint -> npm install eslint - D
