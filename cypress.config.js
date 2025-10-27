@@ -16,10 +16,19 @@ module.exports = defineConfig({
     openMode: 1,
   },
   e2e: {
-    baseUrl: 'https://automationexercise.com/',
-    defaultCommandTimeout: 60000,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    baseUrl: 'https://automationexercise.com/',
+    video: false,
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'cypress/results',
+      overwrite: false,
+      html: true,
+      json: false,
+      timestamp: "mmddyyyy_HHMMss"
+    },
+    defaultCommandTimeout: 60000,
   },
 });
