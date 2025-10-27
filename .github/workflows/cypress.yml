@@ -1,5 +1,10 @@
 name: End-to-end tests
 on: push
+permissions:
+  contents: read
+  actions: read
+  checks: write
+  pull-requests: read
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
