@@ -6,6 +6,26 @@ describe('Conjunto de Teste', () => {
     cy.visit('/');
   });
 
+  context('Testes em rotas com usuário autorizado', () => {
+        it('Verificar se usuário é valido', () => {
+            cy.request({
+                method: 'POST',
+                url: Cypress.env('api_verificar_login'),
+                form: true,
+                body: {
+                    email: Cypress.env('email'),
+                    password: Cypress.env('senha')
+                }
+            }).then(response => {
+                expect(response.status).to.eq(200);
+                let body = typeof response.body === 'string'
+                    ? JSON.parse(response.body)
+                    : response.body
+                expect(body.message).to.eq('User exists!')
+            })
+        })
+    })
+
   context('Cadastros de Usuários', () => {
     it('Registrar Usuário válido', () => {
       let primeiroNome = chance.first();
