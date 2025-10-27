@@ -6,6 +6,8 @@ Instalar o xpath -> npm install -D cypress-xpath
 
 Instalar o fail-fast -> npm install cypress-fail-fast -D
 
+npm install mochawesome --save-dev
+
 
 Instalar o ESLint -> npm install eslint - D
 Intalar o plugin -> npm install eslint-plugin-cypress --save-dev

@@ -9,7 +9,8 @@
     "cypress": "^15.5.0",
     "cypress-fail-fast": "^7.1.1",
     "cypress-xpath": "^2.0.1",
-    "globals": "^16.4.0"
+    "globals": "^16.4.0",
+    "mochawesome": "^7.1.4"
   },
   "dependencies": {
     "-": "^0.0.1",
