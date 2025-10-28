@@ -21,25 +21,29 @@ describe('Conjunto de Teste', () => {
       cy.get('[data-qa="signup-button"]').click();
       cy.get('[data-qa="signup-name').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Preencha este campo.')
+        //expect($input[0].validationMessage).to.include('Preencha este campo.')
+        expect($input[0].validity.valueMissing).to.be.true
       });
       cy.get('[data-qa="signup-name"]').type(nome);
       cy.get('[data-qa="signup-button"]').click();
       cy.get('[data-qa="signup-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Preencha este campo.')
+        //expect($input[0].validationMessage).to.include('Preencha este campo.')
+        expect($input[0].validity.valueMissing).to.be.true
       });
       cy.get('[data-qa="signup-email"]').type(primeiroNome);
       cy.get('[data-qa="signup-button"]').click();
       cy.get('[data-qa="signup-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
+        //expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
+        expect($input[0].validity.valueMissing).to.be.true
       });
       cy.get('[data-qa="signup-email"]').clear().type(primeiroNome + "@");
       cy.get('[data-qa="signup-button"]').click();
       cy.get('[data-qa="signup-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Insira uma parte depois de')
+        //expect($input[0].validationMessage).to.include('Insira uma parte depois de')
+        expect($input[0].validity.valueMissing).to.be.true
       });
       cy.location('pathname').should('equal', '/login');
     })
@@ -97,20 +101,23 @@ describe('Conjunto de Teste', () => {
       cy.get('[data-qa="login-button"]').click();
       cy.get('[data-qa="login-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Preencha este campo.')
+        //expect($input[0].validationMessage).to.include('Preencha este campo.')
+        expect($input[0].validity.valueMissing).to.be.true
       });
 
       cy.get('[data-qa="login-email"]').type("teste");
       cy.get('[data-qa="login-button"]').click();
       cy.get('[data-qa="login-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
+        //expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
+        expect($input[0].validity.valueMissing).to.be.true
       });
       cy.get('[data-qa="login-email"]').clear().type("teste@");
       cy.get('[data-qa="login-button"]').click();
       cy.get('[data-qa="login-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Insira uma parte depois de')
+        //expect($input[0].validationMessage).to.include('Insira uma parte depois de')
+        expect($input[0].validity.valueMissing).to.be.true
       });
 
       cy.fixture('usuarios').then((data) => {
@@ -119,7 +126,8 @@ describe('Conjunto de Teste', () => {
         cy.get('[data-qa="login-button"]').click();
         cy.get('[data-qa="login-password"]').then(($input) => {
           expect($input[0].checkValidity()).to.be.false
-          expect($input[0].validationMessage).to.eq('Preencha este campo.')
+          //expect($input[0].validationMessage).to.eq('Preencha este campo.')
+          expect($input[0].validity.valueMissing).to.be.true
         })
         cy.get('[data-qa="login-password"]').type(chance.integer());
         cy.get('[data-qa="login-button"]').click();
