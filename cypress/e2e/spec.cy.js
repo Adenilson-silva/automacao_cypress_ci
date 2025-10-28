@@ -6,10 +6,10 @@ describe('Conjunto de Teste', () => {
     cy.visit('/');
   });
   afterEach(() => {
-		cy.clearAllCookies();
-		cy.clearAllLocalStorage();
+    cy.clearAllCookies();
+    cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-	})
+  })
 
   context('Cadastro de Novos Usuários', () => {
     it('Verificar campos não preenchidos e com valores inválidos', () => {
@@ -22,28 +22,28 @@ describe('Conjunto de Teste', () => {
       cy.get('[data-qa="signup-name').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
         //expect($input[0].validationMessage).to.include('Preencha este campo.')
-        expect($input[0].validity.valueMissing).to.be.true
+        expect(msg).to.match(/Please fill out this field|Preencha este campo/i)
       });
       cy.get('[data-qa="signup-name"]').type(nome);
       cy.get('[data-qa="signup-button"]').click();
       cy.get('[data-qa="signup-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
         //expect($input[0].validationMessage).to.include('Preencha este campo.')
-        expect($input[0].validity.valueMissing).to.be.true
+        expect(msg).to.match(/Please fill out this field|Preencha este campo/i)
       });
       cy.get('[data-qa="signup-email"]').type(primeiroNome);
       cy.get('[data-qa="signup-button"]').click();
       cy.get('[data-qa="signup-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        //expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
-        expect($input[0].validity.valueMissing).to.be.true
+        expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
+        //expect(msg).to.match(/Please fill out this field|Preencha este campo/i)
       });
       cy.get('[data-qa="signup-email"]').clear().type(primeiroNome + "@");
       cy.get('[data-qa="signup-button"]').click();
       cy.get('[data-qa="signup-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        //expect($input[0].validationMessage).to.include('Insira uma parte depois de')
-        expect($input[0].validity.valueMissing).to.be.true
+        expect($input[0].validationMessage).to.include('Insira uma parte depois de')
+        //expect(msg).to.match(/Please fill out this field|Preencha este campo/i)
       });
       cy.location('pathname').should('equal', '/login');
     })
@@ -102,22 +102,20 @@ describe('Conjunto de Teste', () => {
       cy.get('[data-qa="login-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
         //expect($input[0].validationMessage).to.include('Preencha este campo.')
-        expect($input[0].validity.valueMissing).to.be.true
+        expect(msg).to.match(/Please fill out this field|Preencha este campo/i)
       });
 
       cy.get('[data-qa="login-email"]').type("teste");
       cy.get('[data-qa="login-button"]').click();
       cy.get('[data-qa="login-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        //expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
-        expect($input[0].validity.valueMissing).to.be.true
+        expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
       });
       cy.get('[data-qa="login-email"]').clear().type("teste@");
       cy.get('[data-qa="login-button"]').click();
       cy.get('[data-qa="login-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        //expect($input[0].validationMessage).to.include('Insira uma parte depois de')
-        expect($input[0].validity.valueMissing).to.be.true
+        expect($input[0].validationMessage).to.include('Insira uma parte depois de')
       });
 
       cy.fixture('usuarios').then((data) => {
@@ -127,13 +125,11 @@ describe('Conjunto de Teste', () => {
         cy.get('[data-qa="login-password"]').then(($input) => {
           expect($input[0].checkValidity()).to.be.false
           //expect($input[0].validationMessage).to.eq('Preencha este campo.')
-          expect($input[0].validity.valueMissing).to.be.true
-        })
+          expect(msg).to.match(/Please fill out this field|Preencha este campo/i)
+        });
         cy.get('[data-qa="login-password"]').type(chance.integer());
         cy.get('[data-qa="login-button"]').click();
       })
-      //cy.get('#form p').should('have.text', 'Your email or password is incorrect!');
-      //cy.location('pathname').should('equal', '/login');
     })
 
     it('Realizar Login (usuário válido)', () => {
