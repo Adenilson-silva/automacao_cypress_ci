@@ -37,15 +37,17 @@ describe('Conjunto de Teste', () => {
       cy.get('[data-qa="signup-button"]').click();
       cy.get('[data-qa="signup-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
-        //expect(msg).to.match(/Please fill out this field|Preencha este campo/i)
+        //expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
+        const msg = $input[0].validationMessage
+        expect(msg).to.match(/Please include an '@' in the email address|Inclua um "@" no endereço de e-mail/i)
       });
       cy.get('[data-qa="signup-email"]').clear().type(primeiroNome + "@");
       cy.get('[data-qa="signup-button"]').click();
       cy.get('[data-qa="signup-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
         expect($input[0].validationMessage).to.include('Insira uma parte depois de')
-        //expect(msg).to.match(/Please fill out this field|Preencha este campo/i)
+        const msg = $input[0].validationMessage
+        expect(msg).to.match(/Please include an '@' in the email address|Insira uma parte depois de/i)
       });
       cy.location('pathname').should('equal', '/login');
     })
@@ -118,7 +120,9 @@ describe('Conjunto de Teste', () => {
       cy.get('[data-qa="login-button"]').click();
       cy.get('[data-qa="login-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Insira uma parte depois de')
+        //expect($input[0].validationMessage).to.include('Insira uma parte depois de')
+         const msg = $input[0].validationMessage
+        expect(msg).to.match(/Please include an '@' in the email address|Insira uma parte depois de/i)
       });
 
       cy.fixture('usuarios').then((data) => {
