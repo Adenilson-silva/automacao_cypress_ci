@@ -114,7 +114,9 @@ describe('Conjunto de Teste', () => {
       cy.get('[data-qa="login-button"]').click();
       cy.get('[data-qa="login-email"]').then(($input) => {
         expect($input[0].checkValidity()).to.be.false
-        expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
+        //expect($input[0].validationMessage).to.include('Inclua um "@" no endereço de e-mail')
+        const msg = $input[0].validationMessage
+        expect(msg).to.match(/Please include an '@' in the email address|Inclua um "@" no endereço de e-mail/i)
       });
       cy.get('[data-qa="login-email"]').clear().type("teste@");
       cy.get('[data-qa="login-button"]').click();
