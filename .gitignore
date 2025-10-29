@@ -1,2 +1,2 @@
 node_modules/
-cypress.env.js
+cypress.env.json

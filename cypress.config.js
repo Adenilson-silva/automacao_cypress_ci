@@ -33,5 +33,13 @@ module.exports = defineConfig({
     baseUrl: 'https://automationexercise.com/',
     video: false,
     defaultCommandTimeout: 60000,
+
+    env: {
+      "nome": "Teste",
+      "email": "teste2@teste365.com",
+      "senha": "123456789",
+      "api_verificar_login": "https://automationexercise.com/api/verifyLogin",
+      "requestMode": true
+    }
   },
 });
