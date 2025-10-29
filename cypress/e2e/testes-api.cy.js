@@ -10,7 +10,7 @@ describe('Testes de API', () => {
                     password: Cypress.env('senha')
                 }
             }).then(response => {
-                expect(response.status).to.eq(200);
+                expect(response.status).to.eq(200)
                 let body = typeof response.body === 'string'
                     ? JSON.parse(response.body)
                     : response.body
@@ -29,7 +29,7 @@ describe('Testes de API', () => {
                     password: "teste"
                 }
             }).then(response => {
-                expect(response.status).to.eq(200);
+                expect(response.status).to.eq(200)
                 let body = typeof response.body === 'string'
                     ? JSON.parse(response.body)
                     : response.body
