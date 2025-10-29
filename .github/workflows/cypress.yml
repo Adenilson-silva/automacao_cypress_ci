@@ -23,7 +23,7 @@ jobs:
           browser: chrome
           spec: |
             cypress/e2e/spec.cy.js
-            cypress/e2e/testes-login-api.cy.js
+            cypress/e2e/testes-api.cy.js
           parallel: true
           record: true
           group: 'Cypres Tests'
