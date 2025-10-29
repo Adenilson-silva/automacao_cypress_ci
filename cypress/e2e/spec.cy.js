@@ -1,7 +1,7 @@
 import Chance from 'chance'
 var chance = new Chance()
 
-describe('Conjunto de Teste', () => {
+describe('Test Suite', () => {
   beforeEach(() => {
     cy.visit('/')
   })
