@@ -19,7 +19,6 @@ A estrutura foi aprimorada com diversos recursos e plugins para aumentar a efici
 * **Gerenciamento de Testes em Nuvem (Cypress Cloud):** Utilização do Cypress Cloud (Dashboard) para **visualizar, gerenciar e monitorar as execuções dos testes** em tempo real no pipeline de CI.
 * **Relatórios Profissionais (Mochawesome):** Geração de relatórios HTML detalhados e visuais, facilitando a análise dos resultados de cada execução.
 * **Geração de Dados (Chance):** Utilização da biblioteca `chance` para criar dados de teste dinâmicos e aleatórios em massa (e-mails, nomes, etc.).
-* **Suporte a XPath (`cypress-xpath`):** Adiciona a capacidade de localizar elementos usando expressões XPath, oferecendo flexibilidade em cenários de automação.
 * **Testes de API (`cypress-plugin-api`):** Configuração para realizar testes de *backend* (API) dentro do mesmo *framework*.
 * **Melhoria na Execução (`cypress-fail-fast`):** Interrompe a execução dos testes imediatamente após uma falha crítica, otimizando o tempo em *pipelines* de CI.
 * **Qualidade de Código (ESLint):** Mantém a padronização e a qualidade dos *scripts* de teste em JavaScript.
@@ -53,8 +52,6 @@ Instalar o cypress -> npm install cypress -D
 Instalar o mochawesome -> npm install mochawesome --save-dev
 
 Instalar o chance -> npm install chance -D
-
-Instalar o xpath -> npm install -D cypress-xpath
 
 Instalar o fail-fast -> npm install cypress-fail-fast -D
 
