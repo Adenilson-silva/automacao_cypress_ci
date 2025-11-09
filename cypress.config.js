@@ -47,7 +47,7 @@ module.exports = defineConfig({
         pa11y: pa11y(console.log.bind(console)), // ver o que faz
 
         registroPerformance(data) {
-          const filePath = path.join(__dirname, 'performance-metrics.json');
+          const filePath = path.join(__dirname, 'metrics/performance-metrics.json');
 
           // Se o arquivo não existir, cria com array vazio
           let historico = [];
