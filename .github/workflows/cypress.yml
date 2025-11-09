@@ -35,6 +35,10 @@ jobs:
           record: true
           group: 'Cypres Tests'
 
+      - name: Force add ignored performance metrics
+        # O 'git add -f' força o Git a adicionar o arquivo, mesmo que esteja no .gitignore
+        run: git add -f metrics/performance-metrics.json
+
       - name: Commit performance metrics to repository
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

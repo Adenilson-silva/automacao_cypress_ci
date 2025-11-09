@@ -3,5 +3,10 @@
     "fluxo": "cadastro_produto",
     "tempoTotal(ms)": 630,
     "data": "2025-11-09T20:16:46"
+  },
+  {
+    "fluxo": "cadastro_produto",
+    "tempoTotal(ms)": 1339,
+    "data": "2025-11-09T20:22:18"
   }
 ]
