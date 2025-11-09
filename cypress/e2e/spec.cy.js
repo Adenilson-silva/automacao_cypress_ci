@@ -1,4 +1,5 @@
 import Chance from 'chance'
+
 var chance = new Chance()
 
 describe('Test Suite', () => {
