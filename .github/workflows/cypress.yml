@@ -33,12 +33,19 @@ jobs:
           record: true
           group: 'Cypres Tests'
 
-      - name: Upload performance metrics
-        uses: actions/upload-artifact@v4
+      - name: Commit performance metrics to repository
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          name: performance-metrics
-          path: performance-metrics.json
-          compression-level: 0
+          # O arquivo a ser commitado no repositório.
+          # Certifique-se de que o arquivo está no local correto no runner (ex: metrics/performance-metrics.json)
+          files: metrics/performance-metrics.json 
+          
+          # Define a mensagem de commit
+          commit_message: "feat: Atualiza metrics de performance [Automated Commit]"
+          
+          # Define o autor do commit (substitua com seus dados)
+          committer_name: "Adenilson Silva (Automated)"
+          committer_email: "adenilson.silva@example.com"
     
       #- name: Upload Cypress videos
       #  uses: actions/upload-artifact@v4
