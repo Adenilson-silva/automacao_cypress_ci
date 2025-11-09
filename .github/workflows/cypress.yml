@@ -12,6 +12,8 @@ jobs:
       fail-fast: false
       matrix:
         containers: [1,2]
+    permissions:
+      contents: write
         
     env:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -38,14 +40,14 @@ jobs:
         with:
           # O arquivo a ser commitado no repositório.
           # Certifique-se de que o arquivo está no local correto no runner (ex: metrics/performance-metrics.json)
-          files: metrics/performance-metrics.json 
+          file_pattern: metrics/performance-metrics.json 
           
           # Define a mensagem de commit
           commit_message: "feat: Atualiza metrics de performance [Automated Commit]"
           
           # Define o autor do commit (substitua com seus dados)
-          committer_name: "Adenilson Silva (Automated)"
-          committer_email: "adenilson.silva@example.com"
+          commit_user_name: "Adenilson Silva (Automated)"
+          commit_user_email: "adenilson.silva@example.com"
     
       #- name: Upload Cypress videos
       #  uses: actions/upload-artifact@v4
