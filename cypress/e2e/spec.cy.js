@@ -23,27 +23,35 @@ describe('Test Suite', () => {
       cy.get('#form div.signup-form h2').should('have.text', 'New User Signup!')
 
       cy.then(() => {
-        const fim = new Date(fim).toLocaleString('pt-BR', {
-          timeZone: 'America/Sao_Paulo', // Define o fuso horário
-          hour12: false // Opção de formato 24 horas
-        });
+        const fim = Date.now();
         const tempoTotal = fim - inicio;
 
-        cy.log(`⏱ Tempo total do fluxo: ${tempoTotal} ms`);
+        // 1. Obtém a data/hora exata no fuso horário de São Paulo (BRT)
+        const dataHoraBRT = new Date(fim).toLocaleString('en-CA', {
+          timeZone: 'America/Sao_Paulo',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false // Garante o formato 24 horas
+        });
 
-        // opcional: validar tempo máximo esperado
-        //expect(tempoTotal).to.be.lessThan(4000); // 4 segundos, por exemplo
+        // O resultado de dataHoraBRT será "AAAA-MM-DD, HH:MM:SS" (ex: "2025-11-09, 19:28:32")
 
-        // opcional: salvar em arquivo histórico usando cy.task()
+        // 2. Converte para o formato AAAA-MM-DDTHH:MM:SS (Ideal para Power BI)
+        const dataFormatadaPowerBI = dataHoraBRT.replace(', ', 'T');
+
+        cy.log(`⏱ Tempo total do fluxo: **${tempoTotal} ms**`);
+        cy.log(`📅 Fim do teste (Power BI BRT): **${dataFormatadaPowerBI}**`);
+
         cy.task('registroPerformance', {
           fluxo: 'cadastro_produto',
-          tempoTotal,
-          data: new Date().toISOString()
-        });
-      });
-
-
-
+          'tempoTotal(ms)': tempoTotal,
+          data: dataFormatadaPowerBI // ✅ Envia o formato AAAA-MM-DDTHH:MM:SS (BRT)
+        })
+      })
     })
 
     it('Deve permanecer na mesma página ao submeter o formulário sem o email', () => {
