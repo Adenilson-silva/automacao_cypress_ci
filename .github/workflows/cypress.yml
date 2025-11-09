@@ -28,11 +28,17 @@ jobs:
           record: true
           group: 'Cypres Tests'
 
-      #- name: Upload Cypress videos
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: cypress-videos
-      #    path: cypress/videos/**/*.mp4
+      - name: Upload performance metrics
+        uses: actions/upload-artifact@v3
+        with:
+          name: performance-metrics
+          path: ./cypress/performance-metrics.json
+    
+      - name: Upload Cypress videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos/**/*.mp4
       
         env:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
