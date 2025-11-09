@@ -47,7 +47,7 @@ jobs:
           
           # Define o autor do commit (substitua com seus dados)
           commit_user_name: "Adenilson Silva (Automated)"
-          commit_user_email: "adenilson.silva@example.com"
+          commit_user_email: "adenilson.silva@examplo.com"
     
       #- name: Upload Cypress videos
       #  uses: actions/upload-artifact@v4
