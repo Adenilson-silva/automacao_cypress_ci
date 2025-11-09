@@ -23,24 +23,27 @@ describe('Test Suite', () => {
       cy.get('#form div.signup-form h2').should('have.text', 'New User Signup!')
 
       cy.then(() => {
-      const fim = Date.now();
-      const tempoTotal = fim - inicio;
+        const fim = new Date(fim).toLocaleString('pt-BR', {
+          timeZone: 'America/Sao_Paulo', // Define o fuso horário
+          hour12: false // Opção de formato 24 horas
+        });
+        const tempoTotal = fim - inicio;
 
-      cy.log(`⏱ Tempo total do fluxo: ${tempoTotal} ms`);
+        cy.log(`⏱ Tempo total do fluxo: ${tempoTotal} ms`);
 
-      // opcional: validar tempo máximo esperado
-      //expect(tempoTotal).to.be.lessThan(4000); // 4 segundos, por exemplo
+        // opcional: validar tempo máximo esperado
+        //expect(tempoTotal).to.be.lessThan(4000); // 4 segundos, por exemplo
 
-      // opcional: salvar em arquivo histórico usando cy.task()
-      cy.task('registroPerformance', {
-        fluxo: 'cadastro_produto',
-        tempoTotal,
-        data: new Date().toISOString()
+        // opcional: salvar em arquivo histórico usando cy.task()
+        cy.task('registroPerformance', {
+          fluxo: 'cadastro_produto',
+          tempoTotal,
+          data: new Date().toISOString()
+        });
       });
-    });
-      
 
-      
+
+
     })
 
     it('Deve permanecer na mesma página ao submeter o formulário sem o email', () => {
