@@ -1,0 +1,22 @@
+[
+  {
+    "fluxo": "cadastro_produto",
+    "tempoTotal": 1269,
+    "data": "2025-11-09T22:10:22.401Z"
+  },
+  {
+    "fluxo": "cadastro_produto",
+    "tempoTotal": 693,
+    "data": "2025-11-09T22:16:30.436Z"
+  },
+  {
+    "fluxo": "cadastro_produto",
+    "tempoTotal": 697,
+    "data": "2025-11-09T22:20:05.502Z"
+  },
+  {
+    "fluxo": "cadastro_produto",
+    "tempoTotal(ms)": 773,
+    "data": "2025-11-09T19:46:25"
+  }
+]
