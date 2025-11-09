@@ -1,17 +1,17 @@
 [
   {
     "fluxo": "cadastro_produto",
-    "tempoTotal (ms)": 1159,
-    "data": "2025-11-09T19:32:03"
+    "tempoTotal": 1269,
+    "data": "2025-11-09T22:10:22.401Z"
   },
   {
     "fluxo": "cadastro_produto",
-    "tempoTotal(ms)": 750,
-    "data": "2025-11-09T19:41:07"
+    "tempoTotal": 693,
+    "data": "2025-11-09T22:16:30.436Z"
   },
   {
     "fluxo": "cadastro_produto",
-    "tempoTotal(ms)": 1511,
-    "data": "2025-11-09T19:41:20"
+    "tempoTotal": 697,
+    "data": "2025-11-09T22:20:05.502Z"
   }
 ]
