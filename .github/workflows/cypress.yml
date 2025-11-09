@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: performance-metrics
-          path: ./cypress/performance-metrics.json
+          path: performance-metrics.json
     
       - name: Upload Cypress videos
         uses: actions/upload-artifact@v4
