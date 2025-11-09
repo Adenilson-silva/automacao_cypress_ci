@@ -1,4 +1,3 @@
 node_modules/
 cypress.env.json
-metrics/*
-!metrics/performance-metrics.json
+metrics/performance-metrics.json
