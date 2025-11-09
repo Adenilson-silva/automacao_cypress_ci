@@ -47,7 +47,7 @@ describe('Test Suite', () => {
         cy.log(`📅 Fim do teste (Power BI BRT): **${dataFormatadaPowerBI}**`);
 
         cy.task('registroPerformance', {
-          fluxo: 'cadastro_produto',
+          "fluxo": 'cadastro_produto',
           'tempoTotal(ms)': tempoTotal,
           data: dataFormatadaPowerBI // ✅ Envia o formato AAAA-MM-DDTHH:MM:SS (BRT)
         })
