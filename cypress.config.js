@@ -47,7 +47,13 @@ module.exports = defineConfig({
         pa11y: pa11y(console.log.bind(console)), // ver o que faz
 
         registroPerformance(data) {
-          const filePath = path.join(__dirname, 'metrics/performance-metrics.json');
+          const dirPath = path.join(__dirname, 'metrics');
+          const filePath = path.join(dirPath, 'performance-metrics.json');
+
+          // Cria a pasta caso não exista
+          if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath, { recursive: true });
+          }
 
           // Se o arquivo não existir, cria com array vazio
           let historico = [];
@@ -62,7 +68,7 @@ module.exports = defineConfig({
           return null; // obrigatório para tasks
         }
       }
-    )
+      )
       return config
     },
     baseUrl: 'https://automationexercise.com/',
