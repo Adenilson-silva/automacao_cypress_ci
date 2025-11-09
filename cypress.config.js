@@ -3,6 +3,13 @@
 
 const { defineConfig } = require("cypress");
 
+const { lighthouse, prepareAudit } = require("@cypress-audit/lighthouse");
+const { pa11y } = require("@cypress-audit/pa11y");
+
+const fs = require('fs');
+const path = require('path');
+
+
 module.exports = defineConfig({
   video: true,
   viewportWidth: 1366,
@@ -29,6 +36,34 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      // Necessário para preparar o browser para o Lighthouse
+      on("before:browser:launch", (browser = {}, launchOptions) => {
+        prepareAudit(launchOptions);
+      });
+
+      // Gatilho para o comando lighthouse
+      on("task", {
+        lighthouse: lighthouse(),
+        pa11y: pa11y(console.log.bind(console)), // ver o que faz
+
+        registroPerformance(data) {
+          const filePath = path.join(__dirname, 'performance-metrics.json');
+
+          // Se o arquivo não existir, cria com array vazio
+          let historico = [];
+          if (fs.existsSync(filePath)) {
+            historico = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+          }
+
+          historico.push(data);
+
+          fs.writeFileSync(filePath, JSON.stringify(historico, null, 2), 'utf8');
+
+          return null; // obrigatório para tasks
+        }
+      }
+    )
+      return config
     },
     baseUrl: 'https://automationexercise.com/',
     video: false,

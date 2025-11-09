@@ -4,6 +4,8 @@
     "lint:fix": "eslint cypress/**/*.js --fix && eslint cypress.config.js --fix"
   },
   "devDependencies": {
+    "@cypress-audit/lighthouse": "^1.4.2",
+    "@cypress-audit/pa11y": "^1.4.2",
     "@eslint/js": "^9.38.0",
     "chance": "^1.1.13",
     "cypress": "^15.5.0",

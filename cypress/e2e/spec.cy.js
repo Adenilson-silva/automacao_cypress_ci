@@ -12,13 +12,34 @@ describe('Test Suite', () => {
   })
 
   context('Cadastro de Novos Usuários', () => {
-    it('Deve permanecer na mesma página ao submeter o formulário sem o Nome e Email', () => {
+    it.only('Deve permanecer na mesma página ao submeter o formulário sem o Nome e Email', () => {
+      const inicio = Date.now(); // ✅ inicia cronômetro
       cy.get('#header a[href="/login"]').click()
 
       cy.get('[data-qa="signup-button"]').click()
 
       cy.location('pathname').should('equal', '/login')
       cy.get('#form div.signup-form h2').should('have.text', 'New User Signup!')
+
+      cy.then(() => {
+      const fim = Date.now();
+      const tempoTotal = fim - inicio;
+
+      cy.log(`⏱ Tempo total do fluxo: ${tempoTotal} ms`);
+
+      // opcional: validar tempo máximo esperado
+      //expect(tempoTotal).to.be.lessThan(4000); // 4 segundos, por exemplo
+
+      // opcional: salvar em arquivo histórico usando cy.task()
+      cy.task('registroPerformance', {
+        fluxo: 'cadastro_produto',
+        tempoTotal,
+        data: new Date().toISOString()
+      });
+    });
+      
+
+      
     })
 
     it('Deve permanecer na mesma página ao submeter o formulário sem o email', () => {

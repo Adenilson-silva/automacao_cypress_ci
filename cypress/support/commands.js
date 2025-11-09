@@ -26,11 +26,11 @@
 
 Cypress.Commands.add('login', (email, senha) => {
   cy.session([email, senha], () => {
-    cy.visit('/login');
-    cy.get('[data-qa="login-email"]').type(email);
-    cy.get('[data-qa="login-password"]').type(senha, { log: false });
-    cy.get('[data-qa="login-button"]').click();
-    cy.get('#header a[href="/logout"]').should('have.text', ' Logout');
+    cy.visit('/login')
+    cy.get('[data-qa="login-email"]').type(email);-
+    cy.get('[data-qa="login-password"]').type(senha, { log: false })
+    cy.get('[data-qa="login-button"]').click()
+    cy.get('#header a[href="/logout"]').should('have.text', ' Logout')
   })
 })
 
@@ -44,5 +44,11 @@ Cypress.Commands.add('VerificarLoginApi', (email, senha) => {
     } 
   }).then(response => {
     expect(response.status).to.eq(200);
+  })
+})
+
+Cypress.Commands.add("lighthouse", (thresholds = {}) => {
+  cy.task("lighthouse", {
+    thresholds,
   })
 })

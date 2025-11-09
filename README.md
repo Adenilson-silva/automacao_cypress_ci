@@ -63,3 +63,6 @@ Intalar o plugin -> npm install eslint-plugin-cypress --save-dev
 Inciar o ESLint -> npm init @eslint/config (cria o arquivo de configuração)
 
 Instalar o plugin cypress-plugin-api -> npm i cypress-plugin-api
+
+Instalar a biblioteca cypress-audit -> npm install --save-dev @cypress-audit/lighthouse
+Instalar a biblioteca pa11y -> npm install --save-dev @cypress-audit/pa11y
