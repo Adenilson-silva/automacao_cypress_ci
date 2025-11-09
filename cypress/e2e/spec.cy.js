@@ -4,12 +4,13 @@ var chance = new Chance()
 
 describe('Test Suite', () => {
   beforeEach(() => {
-    cy.visit('/')
-  })
-  afterEach(() => {
     cy.clearAllCookies()
     cy.clearAllLocalStorage()
     cy.clearAllSessionStorage()
+    cy.visit('/')
+  })
+  afterEach(() => {
+   
   })
 
   context('Cadastro de Novos Usuários', () => {
