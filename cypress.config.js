@@ -47,7 +47,7 @@ module.exports = defineConfig({
         pa11y: pa11y(console.log.bind(console)), // ver o que faz
 
         registroPerformance(data) {
-          const dirPath = path.join(__dirname, 'metrics');
+          const dirPath = path.join(process.cwd(), 'metrics');
           const filePath = path.join(dirPath, 'performance-metrics.json');
 
           // Cria a pasta caso não exista
