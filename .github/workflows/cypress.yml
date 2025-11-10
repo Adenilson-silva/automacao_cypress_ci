@@ -35,11 +35,11 @@ jobs:
           record: true
           group: 'Cypres Tests'
 
-      - name: Upload Cypress videos
+      - name: Upload performance metrics
         uses: actions/upload-artifact@v4
         with:
           name: performance-metrics
-          path: performance-metrics.json
+          path: metrics/performance-metrics.json
 
       #- name: Commit performance metrics to repository
       #  uses: stefanzweifel/git-auto-commit-action@v5
