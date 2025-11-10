@@ -10,12 +10,13 @@ describe('Test Suite', () => {
     cy.visit('/')
   })
   afterEach(() => {
-   
+
   })
 
   context('Cadastro de Novos Usuários', () => {
     it.only('Deve permanecer na mesma página ao submeter o formulário sem o Nome e Email', () => {
-      const inicio = Date.now(); // ✅ inicia cronômetro
+      const inicio = Date.now();
+
       cy.get('#header a[href="/login"]').click()
 
       cy.get('[data-qa="signup-button"]').click()
@@ -23,36 +24,8 @@ describe('Test Suite', () => {
       cy.location('pathname').should('equal', '/login')
       cy.get('#form div.signup-form h2').should('have.text', 'New User Signup!')
 
-      cy.then(() => {
-        const fim = Date.now();
-        const tempoTotal = fim - inicio;
-
-        // 1. Obtém a data/hora exata no fuso horário de São Paulo (BRT)
-        const dataHoraBRT = new Date(fim).toLocaleString('en-CA', {
-          timeZone: 'America/Sao_Paulo',
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false // Garante o formato 24 horas
-        });
-
-        // O resultado de dataHoraBRT será "AAAA-MM-DD, HH:MM:SS" (ex: "2025-11-09, 19:28:32")
-
-        // 2. Converte para o formato AAAA-MM-DDTHH:MM:SS (Ideal para Power BI)
-        const dataFormatadaPowerBI = dataHoraBRT.replace(', ', 'T');
-
-        cy.log(`⏱ Tempo total do fluxo: **${tempoTotal} ms**`);
-        cy.log(`📅 Fim do teste (Power BI BRT): **${dataFormatadaPowerBI}**`);
-
-        cy.task('registroPerformance', {
-          "fluxo": 'cadastro_produto',
-          'tempoTotal(ms)': tempoTotal,
-          data: dataFormatadaPowerBI // ✅ Envia o formato AAAA-MM-DDTHH:MM:SS (BRT)
-        })
-      })
+      // 🛑 Chamada do novo comando customizado
+      cy.monitorarPerformance('cadastro_sem_dados_invalidos', inicio);
     })
 
     it('Deve permanecer na mesma página ao submeter o formulário sem o email', () => {

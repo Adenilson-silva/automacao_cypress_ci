@@ -52,3 +52,50 @@ Cypress.Commands.add("lighthouse", (thresholds = {}) => {
     thresholds,
   })
 })
+
+
+
+
+// cypress/support/commands.js
+/**
+ * Monitora o tempo total de execução de um bloco de comandos e registra
+ * a performance.
+ *
+ * @param {string} nomeDoFluxo O nome do fluxo para o registro (ex: 'cadastro_produto').
+ * @param {number} inicio O timestamp (Date.now()) do início da medição.
+ * @param {string} timezone O fuso horário para a formatação da data (ex: 'America/Sao_Paulo').
+ */
+Cypress.Commands.add('monitorarPerformance', (nomeDoFluxo, inicio, timezone = 'America/Sao_Paulo') => {
+  // A execução do Cypress.Commands.add é síncrona,
+  // mas 'cy.then' permite que comandos assíncronos sejam executados.
+  // Usamos 'cy.then' para garantir que o código só rode após o comando anterior.
+  cy.then(() => {
+    const fim = Date.now();
+    const tempoTotal = fim - inicio;
+
+    // 1. Obtém a data/hora exata no fuso horário especificado
+    const dataHoraFormatada = new Date(fim).toLocaleString('en-CA', {
+      timeZone: timezone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false // Garante o formato 24 horas
+    });
+
+    // 2. Converte para o formato AAAA-MM-DDTHH:MM:SS (Ideal para Power BI)
+    const dataFormatadaPowerBI = dataHoraFormatada.replace(', ', 'T');
+
+    cy.log(`⏱ Tempo total do fluxo **${nomeDoFluxo}**: **${tempoTotal} ms**`);
+    cy.log(`📅 Fim do teste (Power BI - ${timezone}): **${dataFormatadaPowerBI}**`);
+
+    // Envia os dados para a Task
+    cy.task('registroPerformance', {
+      "fluxo": nomeDoFluxo,
+      'tempoTotal(ms)': tempoTotal,
+      data: dataFormatadaPowerBI // Formato AAAA-MM-DDTHH:MM:SS
+    });
+  });
+});
