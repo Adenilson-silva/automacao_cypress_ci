@@ -24,8 +24,7 @@ describe('Test Suite', () => {
       cy.location('pathname').should('equal', '/login')
       cy.get('#form div.signup-form h2').should('have.text', 'New User Signup!')
 
-      // 🛑 Chamada do novo comando customizado
-      cy.monitorarPerformance('cadastro_sem_dados_invalidos', inicio);
+      cy.monitorarPerformance('cadastro_sem_dados_invalidos', inicio)
     })
 
     it('Deve permanecer na mesma página ao submeter o formulário sem o email', () => {
